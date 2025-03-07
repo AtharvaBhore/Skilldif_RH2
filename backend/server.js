@@ -6,8 +6,16 @@ const helmet = require("helmet")
 const compression = require("compression")
 const workoutRoutes = require("./routes/workouts")
 const userRoutes = require("./routes/user")
+const cors = require("cors")
 
 const app = express()
+
+app.use(
+	cors({
+		credentials: true,
+		origin: ["http://localhost:5173"],
+	})
+)
 
 // Security middlewares
 app.use(helmet())
