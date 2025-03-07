@@ -1,4 +1,4 @@
-require("dotenv").config()
+const dotenv = require("dotenv").config()
 
 const express = require("express")
 const mongoose = require("mongoose")
@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 })
 
 app.get("/", (req, res) => {
-	res.json({ msg: "OK" })
+	res.json({msg: "OK"})
 })
 
 app.use("/api/workouts", workoutRoutes)
