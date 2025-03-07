@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Typography } from "@mui/material";
-import Alert from "@mui/material/Alert";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import { Paper } from "@mui/material";
-import { useSignup } from "../hooks/useSignup";
+import {useState} from "react"
+import TextField from "@mui/material/TextField"
+import {ThemeProvider} from "@mui/material/styles"
+import createTheme from "@mui/material/styles/createTheme"
+import {Typography} from "@mui/material"
+import Alert from "@mui/material/Alert"
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
+import {Paper} from "@mui/material"
+import {useSignup} from "../hooks/useSignup"
 
 const theme = createTheme({
 	components: {
@@ -42,34 +43,38 @@ const theme = createTheme({
 			},
 		},
 	},
-});
+})
 
 function Signup() {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const { error, isLoading, signup } = useSignup();
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const {error, isLoading, signup} = useSignup()
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
+		e.preventDefault()
 
-		await signup(email, password);
-	};
+		await signup(email, password)
+	}
 
 	return (
 		<div className="flex flex-grow justify-center h-screen my-24 ">
 			<ThemeProvider theme={theme}>
-				<Paper className="max-md:w-3/4 md:w-[500px] h-[400px] bg-white p-4" elevation={3} sx={{ borderRadius: "8px" }}>
+				<Paper
+					className="max-md:w-3/4 md:w-[500px] h-[400px] bg-white p-4"
+					elevation={3}
+					sx={{borderRadius: "8px"}}
+				>
 					<form onSubmit={handleSubmit}>
 						<div className="flex flex-col mt-3">
 							<Typography variant="h4">
-								<Box sx={{ fontStyle: "italic", mb: 2 }}>Sign Up</Box>
+								<Box sx={{fontStyle: "italic", mb: 2}}>Sign Up</Box>
 							</Typography>
 							<TextField
 								label="Email"
 								variant="outlined"
-								sx={{ my: 2 }}
+								sx={{my: 2}}
 								onChange={(e) => {
-									setEmail(e.target.value);
+									setEmail(e.target.value)
 								}}
 								value={email}
 							/>
@@ -77,9 +82,9 @@ function Signup() {
 								label="Password"
 								variant="outlined"
 								type="password"
-								sx={{ mt: 2, mb: 4 }}
+								sx={{mt: 2, mb: 4}}
 								onChange={(e) => {
-									setPassword(e.target.value);
+									setPassword(e.target.value)
 								}}
 								value={password}
 							/>
@@ -98,7 +103,7 @@ function Signup() {
 				</Paper>
 			</ThemeProvider>
 		</div>
-	);
+	)
 }
 
-export default Signup;
+export default Signup

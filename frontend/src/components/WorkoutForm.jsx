@@ -1,14 +1,15 @@
-import React, { useState } from "react"
+import {useState} from "react"
 import TextField from "@mui/material/TextField"
 import InputAdornment from "@mui/material/InputAdornment"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { Typography } from "@mui/material"
+import {ThemeProvider} from "@mui/material/styles"
+import createTheme from "@mui/material/styles/createTheme"
+import {Typography} from "@mui/material"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Alert from "@mui/material/Alert"
-import { useWorkoutsContext } from "../hooks/useWorkoutContext"
-import { useAuthContext } from "../hooks/useAuthContext"
-import { baseURL } from "../url"
+import {useWorkoutsContext} from "../hooks/useWorkoutContext"
+import {useAuthContext} from "../hooks/useAuthContext"
+import {baseURL} from "../url"
 
 const theme = createTheme({
 	components: {
@@ -53,8 +54,8 @@ function WorkoutForm() {
 	const [error, setError] = useState("")
 	const [isEmpty, setIsEmpty] = useState(true)
 
-	const { dispatch } = useWorkoutsContext()
-	const { user } = useAuthContext()
+	const {dispatch} = useWorkoutsContext()
+	const {user} = useAuthContext()
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -63,7 +64,7 @@ function WorkoutForm() {
 			return
 		}
 
-		const workout = { title, reps, load }
+		const workout = {title, reps, load}
 
 		if (!title || !reps || !load) {
 			setIsEmpty(true)
@@ -85,7 +86,7 @@ function WorkoutForm() {
 		}
 
 		if (response.ok) {
-			dispatch({ type: "CREATE_WORKOUT", payload: data.workout })
+			dispatch({type: "CREATE_WORKOUT", payload: data.workout})
 			// Reset form fields
 			setTitle("")
 			setLoad("")
@@ -101,13 +102,13 @@ function WorkoutForm() {
 			<form onSubmit={handleSubmit}>
 				<Box className="flex flex-col my-8 max-lg:w-3/4 max-lg:mx-auto">
 					<Typography variant="h4">
-						<Box sx={{ fontStyle: "italic" }}>Add Workout</Box>
+						<Box sx={{fontStyle: "italic"}}>Add Workout</Box>
 					</Typography>
 					<TextField
 						id="outlined-basic"
 						label="Exercise"
 						variant="outlined"
-						sx={{ my: 2 }}
+						sx={{my: 2}}
 						onChange={(e) => setTitle(e.target.value)}
 						value={title}
 						error={isEmpty && !title}
@@ -117,7 +118,7 @@ function WorkoutForm() {
 						label="Reps"
 						variant="outlined"
 						type="number"
-						sx={{ my: 2 }}
+						sx={{my: 2}}
 						onChange={(e) => setReps(e.target.value)}
 						value={reps}
 						error={isEmpty && !reps}
@@ -132,7 +133,7 @@ function WorkoutForm() {
 								<InputAdornment position="end">kg</InputAdornment>
 							),
 						}}
-						sx={{ my: 2 }}
+						sx={{my: 2}}
 						onChange={(e) => setLoad(e.target.value)}
 						value={load}
 						error={isEmpty && !load}
@@ -140,7 +141,7 @@ function WorkoutForm() {
 					<Buton
 						type="submit"
 						variant="outlined"
-						sx={{ my: 2, alignSelf: "flex-start" }}
+						sx={{my: 2, alignSelf: "flex-start"}}
 					>
 						Add Workout
 					</Buton>

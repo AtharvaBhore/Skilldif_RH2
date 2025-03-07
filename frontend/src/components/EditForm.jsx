@@ -1,14 +1,15 @@
-import React, { useState } from "react"
-import { Typography } from "@mui/material"
+import {useState} from "react"
+import {Typography} from "@mui/material"
 import Alert from "@mui/material/Alert"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import InputAdornment from "@mui/material/InputAdornment"
 import TextField from "@mui/material/TextField"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { useWorkoutsContext } from "../hooks/useWorkoutContext"
-import { useAuthContext } from "../hooks/useAuthContext"
-import { baseURL } from "../url"
+import {ThemeProvider} from "@mui/material/styles"
+import createTheme from "@mui/material/styles/createTheme"
+import {useWorkoutsContext} from "../hooks/useWorkoutContext"
+import {useAuthContext} from "../hooks/useAuthContext"
+import {baseURL} from "../url"
 
 const theme = createTheme({
 	components: {
@@ -46,15 +47,15 @@ const theme = createTheme({
 	},
 })
 
-function EditForm({ workout, setIsEditFormVisible }) {
+function EditForm({workout, setIsEditFormVisible}) {
 	const [title, setTitle] = useState(workout.title)
 	const [reps, setReps] = useState(workout.reps)
 	const [load, setLoad] = useState(workout.load)
 	const [error, setError] = useState("")
 	const [isEmpty, setIsEmpty] = useState(false)
 
-	const { dispatch } = useWorkoutsContext()
-	const { user } = useAuthContext()
+	const {dispatch} = useWorkoutsContext()
+	const {user} = useAuthContext()
 
 	const handleSubmit = async (e) => {
 		if (1) {
@@ -67,7 +68,7 @@ function EditForm({ workout, setIsEditFormVisible }) {
 			return
 		}
 
-		const SubmitWorkout = { title, reps, load }
+		const SubmitWorkout = {title, reps, load}
 
 		if (!title || !reps || !load) {
 			setIsEmpty(true)
@@ -91,7 +92,7 @@ function EditForm({ workout, setIsEditFormVisible }) {
 
 		console.log(data.workout)
 		if (response.ok) {
-			dispatch({ type: "EDIT_WORKOUT", payload: data.workout })
+			dispatch({type: "EDIT_WORKOUT", payload: data.workout})
 
 			setTitle("")
 			setLoad("")
@@ -109,13 +110,13 @@ function EditForm({ workout, setIsEditFormVisible }) {
 				<form onSubmit={handleSubmit}>
 					<div className="flex flex-col my-">
 						<Typography variant="h4">
-							<Box sx={{ fontStyle: "italic", mb: 2 }}>Edit Workout</Box>
+							<Box sx={{fontStyle: "italic", mb: 2}}>Edit Workout</Box>
 						</Typography>
 						<TextField
 							id="outlined-basic"
 							label="Exercise"
 							variant="outlined"
-							sx={{ my: 2 }}
+							sx={{my: 2}}
 							onChange={(e) => {
 								setTitle(e.target.value)
 							}}
@@ -127,7 +128,7 @@ function EditForm({ workout, setIsEditFormVisible }) {
 							label="Reps"
 							variant="outlined"
 							type="number"
-							sx={{ my: 2 }}
+							sx={{my: 2}}
 							onChange={(e) => {
 								setReps(e.target.value)
 							}}
@@ -144,7 +145,7 @@ function EditForm({ workout, setIsEditFormVisible }) {
 									<InputAdornment position="end">kg</InputAdornment>
 								),
 							}}
-							sx={{ my: 2 }}
+							sx={{my: 2}}
 							onChange={(e) => {
 								setLoad(e.target.value)
 							}}
