@@ -12,7 +12,10 @@ function App() {
 			<BrowserRouter>
 				<Navbar />
 				<Routes>
-					<Route path="/" element={user ? <Home /> : <Navigate to="/" />} />
+					<Route
+						path="/"
+						element={user ? <Home /> : <Navigate to="/signup" />}
+					/>
 					<Route
 						path="/login"
 						element={!user ? <Login /> : <Navigate to="/" />}
