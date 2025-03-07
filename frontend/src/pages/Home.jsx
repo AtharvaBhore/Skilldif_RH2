@@ -14,6 +14,7 @@ function Home() {
 	useEffect(() => {
 		const fetchWorkouts = async () => {
 			try {
+				console.log("Fetching workouts")
 				const response = await fetch(`${baseURL}/api/workouts`, {
 					headers: {
 						Authorization: `Bearer ${user.token}`,
